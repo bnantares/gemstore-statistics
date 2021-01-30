@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    main page
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Топ-5 покупателей:</h1>
+    {% for customer in top_customers %}
+        <p>
+            Покупатель: <b>{{ customer.customer }}</b>, потрачено: <b>{{ customer.spent_money }}</b>, виды камней: <b>{{ customer.gems }}</b>
+        </p>
+    {% endfor %}
+{% endblock %}

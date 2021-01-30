@@ -1,0 +1,11 @@
+version: '3.7' 
+
+services:
+  django:
+    build: .
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:5000 --noreload
+    volumes:
+      - .:/app
+    ports:
+      - "5000:5000"
