@@ -1,6 +1,13 @@
 version: '3.7' 
 
 services:
+  migrations:
+    image: 9a3bd91dded3
+    command: python manage.py migrate --noinput
+    volumes:
+      - .:/app
+    # depends_on: 
+    #   - db
   django:
     build: .
     container_name: django
