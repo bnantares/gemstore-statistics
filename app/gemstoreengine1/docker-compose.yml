@@ -1,18 +1,14 @@
-version: '3.7' 
-
-services:
-  migrations:
-    image: 9a3bd91dded3
-    command: python manage.py migrate --noinput
-    volumes:
-      - .:/app
-    # depends_on: 
-    #   - db
-  django:
-    build: .
-    container_name: django
-    command: python manage.py runserver 0.0.0.0:5000 --noreload
-    volumes:
-      - .:/app
-    ports:
-      - "5000:5000"
+django:
+  build: .
+  volumes:
+    - .:/app
+migration:
+  extends:
+    service: django
+  command: python manage.py migrate
+server:
+  extends:
+    service: django
+  command: python manage.py runserver 0.0.0.0:5000
+  ports:
+    - "5000:5000"
